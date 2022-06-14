@@ -2,14 +2,25 @@ const express = require('express');
 const fetch = require('node-fetch');
 
 
+
 const app = express();
+app.use(express.json());
+app.use('/', express.static('html-pages'));
 
-app.get('/classes', (req, res) => {
+app.get('/classes', async (req, res) => {
+
+    //non async
+    //  fetch('https://www.dnd5eapi.co/api/classes')
+    // .then(res => res.json())
+    // .then(json => res.json(json));
 
 
-    res.json(fetch('https://www.dnd5eapi.co/api/classes')
-    .then(res => res.json())
-    .then(json => console.log(json)));
+    //async attempt --works
+    const classesResponse = await fetch('https://www.dnd5eapi.co/api/classes');
+    const classesData = await classesResponse.json();
+    // console.log(classesData);
+    // res.json(classesData);
+    res.sendFile(__dirname + '/html-pages/hero-choose.html');
 });
 
 
