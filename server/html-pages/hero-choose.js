@@ -24,10 +24,59 @@ const makeClassButtons = () => {
 };
 makeClassButtons();
 
+
+
+//#endregion
+
+//Choose Starting Equipment
+//#region
+const chooseStartingEquipment = async (heroClass) => {
+  // console.log('startingEquipment: ', heroClass);
+  const startingEquipmentResponse = await fetch(`https://www.dnd5eapi.co/api/classes/${heroClass}`);
+  const startingEquipmentData = await startingEquipmentResponse.json();
+  // console.log(startingEquipmentData.starting_equipment_options[0].from[0].equipment.name);
+  let checker = document.getElementById('starting-equipment-div');
+  console.log(checker);
+
+
+  const startingEquipmentDiv = document.createElement('div');
+  startingEquipmentDiv.setAttribute('id', 'starting-equipment-div');
+  startingEquipmentDiv.innerText = `Choose your starting equipment, ${heroClass}`;
+  document.body.appendChild(startingEquipmentDiv);
+  console.log(checker);
+
+  const startingEquipmentButtons = () => {
+    startingEquipmentData.starting_equipment_options.forEach(el => {
+        const equipmentButton = document.createElement('button');
+        equipmentButton.setAttribute('id', 'class-equipment');
+        const equipmentInnerText = el.from[0].equipment.name;
+        equipmentButton.innerText  = `${equipmentInnerText}`;
+        startingEquipmentDiv.appendChild(equipmentButton);
+    });
+  };
+  if(!checker){
+    startingEquipmentButtons();
+  }else{
+    document.getElementById('starting-equipment-div').remove();
+    checker = false;
+  }
+
+};
+
+//#endregion
+
+
+
+
+
+
+//Event Listeners
+//#region
 heroButtonsDiv.addEventListener('click', (e)=> {
-    let classChosen = e.target;
-    // console.log(e.target);
+  let classChosen = e.target;
+  // console.log(e.target);
+  // console.log('HeroButton: ', classChosen.innerText);
+  chooseStartingEquipment(classChosen.innerText.toLowerCase());
 
 });
-
 //#endregion
