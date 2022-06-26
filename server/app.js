@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 app.use('/', express.static('html-pages'));
 
-app.get('/classes', async (req, res) => {
+app.get('/', async (req, res) => {
 
     //non async
     //  fetch('https://www.dnd5eapi.co/api/classes')
@@ -18,11 +18,15 @@ app.get('/classes', async (req, res) => {
     //async attempt --works
     const classesResponse = await fetch('https://www.dnd5eapi.co/api/classes');
     const classesData = await classesResponse.json();
-    // console.log(classesData);
+    console.log(classesData);
     // res.json(classesData);
-    res.sendFile(__dirname + '/html-pages/hero-choose.html');
+    res.sendFile(__dirname + '/html-pages/character-creation/hero-choose.html');
 });
 
+
+app.get('/combat', (req, res) => {
+    res.sendFile(__dirname + '/html-pages/combat/combat.html');
+});
 
 
 const port = 5000;

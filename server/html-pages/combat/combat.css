@@ -1,0 +1,69 @@
+#player-character {
+    background-color: rgba(0, 128, 0, 0.524);
+    display: flex;
+    box-sizing: content-box;
+    width: 50%;
+    height: 200px
+}
+#hero-picture{
+    display: block;
+    box-sizing: border-box;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: black;
+    margin-top: 20px;
+    margin-left: 5px;
+}
+#player-info {
+    margin-left: 10px;
+    border-left: solid black 2px;
+    width: 350px;
+}
+#player-info-one{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding-left: 5px;
+    padding-top: 3px
+}
+#player-info-two{
+    display: flex;
+    justify-content: space-around;
+    padding-left: 5px;
+    padding-top: 3px
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+#enemy {
+    background-color: rgba(255, 0, 0, 0.525);
+    display: flex;
+    box-sizing: content-box;
+    width: 50%;
+    height: 200px
+}
+#enemy-picture{
+    display: block;
+    box-sizing: border-box;
+    width: 50px;
+    height: 50px;
+    background-color: black;
+}
+
+
+
+#pc-enemy-container {
+    display: flex;
+    justify-content: space-around;
+}
